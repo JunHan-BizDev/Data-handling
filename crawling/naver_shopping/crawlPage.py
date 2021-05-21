@@ -43,17 +43,12 @@ class GetListPage(GetPage):
     def getSoup(self):
         self.url = self.driver.current_url
 
-        ''' 일반적인 requests get module '''
-        #res = requests.get(self.url)
-        #res = res.text
-        #self.soup = BeautifulSoup(res, 'html.parser')
-
         # 현재 html을 반환
         current_html = self.driver.find_element_by_xpath("//html").get_attribute('outerHTML')
         self.soup = BeautifulSoup(current_html, 'html.parser')
 
     def getInfo(self):
-        for k in range(1000):  # prototype 100번 반복
+        for k in range(1000):  
             print(f"{k+1}번째 페이지 크롤링중.. ")
             self.processPage()
             self.getSoup()
